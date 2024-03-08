@@ -5,16 +5,21 @@ import { StyledHeader } from './header.styles';
 
 const Header = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	console.log(isMenuOpen);
 	return (
 		<StyledHeader>
-			<img src='/public/assets/shared/logo.svg' alt='' />
+			<img src='/assets/shared/logo.svg' alt='' />
 			<Hamburguer
 				setIsMenuOpen={setIsMenuOpen}
-				image='/assets/shared/icon-hamburger.svg'
+				image={
+					isMenuOpen
+						? '/assets/shared/icon-close.svg'
+						: '/assets/shared/icon-hamburger.svg'
+				}
 				alt=''
 				action={() => setIsMenuOpen(!isMenuOpen)}
 			/>
-			<Menu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+			<Menu isMenuOpen={isMenuOpen} action={() => setIsMenuOpen(false)} />
 		</StyledHeader>
 	);
 };

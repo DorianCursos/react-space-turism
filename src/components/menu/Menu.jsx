@@ -1,23 +1,19 @@
 import { Link } from 'react-router-dom';
+import { MENU } from '../../constants/menu';
 import { StyledMenuItem, StyledNav } from './menu.styles';
 
-const Menu = ({action}) => {
+const Menu = ({ isMenuOpen, action }) => {
 	return (
 		<>
-			<StyledNav>
+			<StyledNav $isMenuOpen={isMenuOpen}>
 				<ul>
-					<StyledMenuItem>
-						<Link to='/'>00 Home</Link>
-					</StyledMenuItem>
-					<StyledMenuItem>
-						<Link to='/destination'>01 Destination</Link>
-					</StyledMenuItem>
-					<StyledMenuItem>
-						<Link to='/crew'>02 Crew</Link>
-					</StyledMenuItem>
-					<StyledMenuItem>
-						<Link to='/technology'>03 Technology</Link>
-					</StyledMenuItem>
+					{MENU.map(({ id, to, title }) => (
+						<StyledMenuItem key={id}>
+							<Link to={to} onClick={action}>
+								{title}
+							</Link>
+						</StyledMenuItem>
+					))}
 				</ul>
 			</StyledNav>
 		</>
